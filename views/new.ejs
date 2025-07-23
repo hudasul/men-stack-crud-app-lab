@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Create Food Page</h1>
+    <form action="/food/new" method="post">
+
+        <label for="foodName">Food Name:</label>
+        <input name="name" id="foodName" type="text" required minlength="3">
+
+        <label for="foodType">Food Type:</label>
+        <input name="foodType" id="foodType" type="text" required minlength="3">
+
+
+        <label for="isHealthy">Is Healthy?</label>
+        <input name="isHealthy" id="isHealthy" type="checkbox">
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
