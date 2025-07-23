@@ -88,9 +88,20 @@ app.get("/food/:id",async (req,res)=>{
 
 app.get("/food/:id/edit",async (req,res)=>{
     try{
-    res.render("new.ejs")    
+    const foundFood = await food.findById(req.params.id)    
+    res.render("update.ejs",{foundFood})    
     }
     catch(error){
+        console.log(error)
+    }
+})
+
+
+app.post("/food/:id", async (req,res)=>{
+    try{
+       const deletedFood = await food.findByIdAndDelete(req.params.id)  
+       res.render("deleteFood.ejs",{deletedFood})
+    }catch(error){
         console.log(error)
     }
 })
