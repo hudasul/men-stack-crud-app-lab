@@ -7,10 +7,21 @@
 </head>
 <body>
     <h1>List of all food</h1>
+
+    
     <% allFood.forEach((oneItem)=>{%>
        <p>Name: <%= oneItem.name%></p>
        <a href="/food/<%=oneItem._id%>">The food details</a>
-
+       <hr>
     <%})%>    
+    <br>
+    
+    <form action="/food/new" method="get">
+        <button type="submit">Create new food Item</button>
+    </form>
+
+   
+    
+  
 </body>
 </html>

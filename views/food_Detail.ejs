@@ -14,8 +14,16 @@
     <%}else{%>
         <p>This food is NOT healthy!</p>
         <%}%>    
+     <form action="/food" method="get">
+        <button type="submit">Go back to all food list</button>
+    </form>    
+    <br>
     <form action="/food/Destroy/<%=foundFood._id%>?_method=DELETE" method="post">
         <button type="submit">Delete Food</button>
+    </form>
+    <br>
+     <form action="/food/<%= foundFood._id%>/edit" method="get">
+        <button type="submit">Update Food Details</button>
     </form>
 </body>
 </html>
