@@ -5,6 +5,8 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv").config() //this allows me to use my .env values in this file
 const food = require("./models/food")
 
+const methodOverride = require("method-override")
+app.use(methodOverride("_method")); // new
 
 
 // Middleware
@@ -56,6 +58,7 @@ app.post("/food/new",async (req,res)=>{
     try{
        const createdFood = await food.create(req.body)
        console.log(createdFood)
+       res.redirect("/food")
  
     }catch(error){
         console.log(error)
@@ -86,28 +89,36 @@ app.get("/food/:id",async (req,res)=>{
 })
 
 
-app.get("/food/:id/edit",async (req,res)=>{
+
+app.delete("/food/Destroy/:id", async (req,res)=>{
+    console.log(req.params)
     try{
-    const foundFood = await food.findById(req.params.id)    
-    res.render("update.ejs",{foundFood})    
+        const deletedFruit = await food.findByIdAndDelete(req.params.id)
+        res.redirect("/food")
     }
     catch(error){
         console.log(error)
     }
 })
 
-
-app.post("/food/:id", async (req,res)=>{
+app.get("/food/:id/edit",async(req,res)=>{
     try{
-       const deletedFood = await food.findByIdAndDelete(req.params.id)  
-       res.render("deleteFood.ejs",{deletedFood})
-    }catch(error){
+        const foundFood = await food.findById(req.params.id)
+        res.render("update.ejs",{foundFood})
+    }
+    catch(error){
         console.log(error)
     }
 })
 
-
-
+app.put("/food/:Id/edit",async(req,res)=>{
+    if(req.body.isHealthy === "on"){
+        req.body.isHealthy  = true
+    }
+    const updatedFood = await food.findByIdAndUpdate(req.params.Id, req.body)
+    console.log(updatedFood)
+    res.redirect("/food/"+req.params.Id)
+})
 
 
 

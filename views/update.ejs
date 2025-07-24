@@ -8,17 +8,17 @@
 <body>
     
     <h1>Update <%= foundFood.name%> Details</h1>
-    <form action="/food/new" method="post">
+    <form action="/food/<%= foundFood._id%>/edit?_method=PUT" method="post">
 
         <label for="foodName">Food Name:</label>
-        <input name="name" id="foodName" type="text" required minlength="3">
+        <input value="<%= foundFood.name%>" name="name" id="foodName" type="text" required minlength="3">
 
         <label for="foodType">Food Type:</label>
-        <input name="foodType" id="foodType" type="text" required minlength="3">
+        <input value="<%= foundFood.foodType%>" name="foodType" id="foodType" type="text" required minlength="3">
 
 
         <label for="isHealthy">Is Healthy?</label>
-        <input name="isHealthy" id="isHealthy" type="checkbox">
+        <input  <% if(foundFood.isHealthy){ %> checked<% }%> name="isHealthy" id="isHealthy" type="checkbox">
 
         <button type="submit">Submit</button>
     </form>
