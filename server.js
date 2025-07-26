@@ -90,7 +90,7 @@ app.get("/food/:id",async (req,res)=>{
 
 
 
-app.delete("/food/Destroy/:id", async (req,res)=>{
+app.delete("/food/destroy/:id", async (req,res)=>{
     console.log(req.params)
     try{
         const deletedFruit = await food.findByIdAndDelete(req.params.id)
@@ -111,13 +111,13 @@ app.get("/food/:id/edit",async(req,res)=>{
     }
 })
 
-app.put("/food/:Id/edit",async(req,res)=>{
+app.put("/food/:id/edit",async(req,res)=>{
     if(req.body.isHealthy === "on"){
         req.body.isHealthy  = true
     }
-    const updatedFood = await food.findByIdAndUpdate(req.params.Id, req.body)
+    const updatedFood = await food.findByIdAndUpdate(req.params.id, req.body)
     console.log(updatedFood)
-    res.redirect("/food/"+req.params.Id)
+    res.redirect("/food/"+req.params.id)
 })
 
 
